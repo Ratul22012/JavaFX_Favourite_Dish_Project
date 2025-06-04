@@ -46,7 +46,7 @@ public class DishController {
 
     private void connectToDatabase() {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/food_db", "Atif", "arpita");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/food_db", "Ratul", "");
             Statement stmt = connection.createStatement();
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS dishes (name VARCHAR(255), description TEXT)");
         } catch (SQLException e) {
