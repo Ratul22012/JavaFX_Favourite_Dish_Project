@@ -46,11 +46,11 @@ public class DishController {
 
     private void connectToDatabase() {
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/food_db", "Ratul", "");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/food_db", "Atif", "arpita");
             Statement stmt = connection.createStatement();
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS dishes (name VARCHAR(255), description TEXT)");
         } catch (SQLException e) {
-            showAlert("Database Error", "Could not connect to database: " + e.getMessage());
+            showAlert("ডেটাবেইস ত্রুটি", "ডেটাবেইসে সংযোগ করা যায়নি: " + e.getMessage()); // "Database Error"
         }
     }
 
@@ -63,7 +63,7 @@ public class DishController {
                 dishes.add(new FoodItem(rs.getString("name"), rs.getString("description")));
             }
         } catch (SQLException e) {
-            showAlert("Error", "Could not load data: " + e.getMessage());
+            showAlert("ত্রুটি", "তথ্য লোড করা যায়নি: " + e.getMessage()); // "Error"
         }
     }
 
@@ -73,7 +73,7 @@ public class DishController {
         String description = descriptionField.getText().trim();
 
         if (name.isEmpty()) {
-            showAlert("ত্রুটি", "রেসিপির নাম দিতে হবে");
+            showAlert("ত্রুটি", "খাবারের নাম দিতে হবে"); // "Error" -> "Dish name is required"
             return;
         }
 
@@ -83,7 +83,7 @@ public class DishController {
             stmt.setString(2, description);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            showAlert("Error", "Could not add dish: " + e.getMessage());
+            showAlert("ত্রুটি", "খাবার যোগ করা যায়নি: " + e.getMessage()); // "Could not add dish"
             return;
         }
 
@@ -95,7 +95,7 @@ public class DishController {
     protected void updateDish() {
         FoodItem selected = dishTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
-            showAlert("তথ্য নেই", "আপডেট করার জন্য একটি আইটেম নির্বাচন করুন");
+            showAlert("তথ্য নেই", "আপডেট করার জন্য একটি আইটেম নির্বাচন করুন"); // "No item selected"
             return;
         }
 
@@ -110,7 +110,7 @@ public class DishController {
             selected.setDescription(descriptionField.getText().trim());
             dishTable.refresh();
         } catch (SQLException e) {
-            showAlert("Error", "Could not update dish: " + e.getMessage());
+            showAlert("ত্রুটি", "খাবার আপডেট করা যায়নি: " + e.getMessage()); // "Could not update dish"
         }
 
         clearFields();
@@ -120,7 +120,7 @@ public class DishController {
     protected void deleteDish() {
         FoodItem selected = dishTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
-            showAlert("তথ্য নেই", "মুছে ফেলার জন্য একটি আইটেম নির্বাচন করুন");
+            showAlert("তথ্য নেই", "মুছে ফেলার জন্য একটি আইটেম নির্বাচন করুন"); // "No item selected"
             return;
         }
 
@@ -131,7 +131,7 @@ public class DishController {
 
             dishes.remove(selected);
         } catch (SQLException e) {
-            showAlert("Error", "Could not delete dish: " + e.getMessage());
+            showAlert("ত্রুটি", "খাবার মুছে ফেলা যায়নি: " + e.getMessage()); // "Could not delete dish"
         }
 
         clearFields();
