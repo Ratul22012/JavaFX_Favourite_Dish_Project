@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.my_favourite_dish.DishController" prefWidth="600" prefHeight="400">
+
+    <TextField fx:id="nameField" layoutX="50" layoutY="30" promptText="Dish Name" />
+
+    <TextField fx:id="descriptionField" layoutX="50" layoutY="70" promptText="Description" />
+
+    <TableView fx:id="dishTable" layoutX="50" layoutY="110" prefWidth="500" prefHeight="200">
+        <columns>
+            <TableColumn fx:id="nameColumn" text="Name" prefWidth="250"/>
+            <TableColumn fx:id="descriptionColumn" text="Description" prefWidth="250"/>
+        </columns>
+    </TableView>
+
+    <Button text="Add" onAction="#addDish" layoutX="400" layoutY="30" />
+    <Button text="Update" onAction="#updateDish" layoutX="460" layoutY="30" />
+    <Button text="Delete" onAction="#deleteDish" layoutX="520" layoutY="30" />
+    <Button text="Clear" onAction="#clearFields" layoutX="580" layoutY="30" />
+
+</AnchorPane>
